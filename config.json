@@ -1,0 +1,3 @@
+{
+	"dbUri": "mongodb://127.0.0.1/student_feedback"
+}
