@@ -8,7 +8,7 @@
 
 	<title>Student Feedback Form</title>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
@@ -20,7 +20,7 @@
 </head>
 <body>
 	<script type="text/x-handlebars-template" id="teacher-group-template">
-	    <div class="teacher-group" data-index="{{index}}">
+	    <div class="teacher-group" data-subject-id="{{_id}}">
 			<div class="teacher-group-hero">
 				<div class="teacher-group-hero-center">
 					<div class="teacher-group-hero-teacher">{{teacher}}</div>
@@ -40,16 +40,18 @@
 				<div class="next-button">Next</div>
 			</div>
 			<div class="sections">
-			{{#each sections}}
-				<div data-title="{{title}}" class="section">
-					{{{html}}}
-				</div>
-			{{/each}}
+		    	<form data-id="{{_id}}">
+				{{#each sections}}
+					<div data-title="{{title}}" class="section">
+						{{{html}}}
+					</div>
+				{{/each}}
+				</form>
 			</div>
 		</div>
 	</script>
 	<script type="text/x-handlebars-template" id="question-rating-table">
-		<h1>{{title}}</h1>
+		<h2>{{title}}</h2>
 		<table class="rating-table">
 			<tbody>
 				{{#each rows}}
@@ -57,50 +59,45 @@
 					<td class="rating-table-text">{{this}}</td>
 					<td class="rating-table-vote">
 						<input type='radio'
-						id='{{../title}}-{{@index}}-0'
-						value='4'
-						name='{{../title}}-{{@index}}'/>
-						<label for='{{../title}}-{{@index}}-0'
+						value='Excellent'
+						name='{{../unique}}-{{@index}}'/>
+						<label
 						class="material-icons">
 						sentiment_very_satisfied
 						</label>
 					</td>
 					<td class="rating-table-vote">
 						<input type='radio'
-						id='{{../title}}-{{@index}}-1'
-						value='3'
-						name='{{../title}}-{{@index}}'/>
-						<label for='{{../title}}-{{@index}}-1'
+						value='Good'
+						name='{{../unique}}-{{@index}}'/>
+						<label
 						class="material-icons">
 						sentiment_satisfied
 						</label>
 					</td>
 					<td class="rating-table-vote">
 						<input type='radio'
-						id='{{../title}}-{{@index}}-2'
-						value='2'
-						name='{{../title}}-{{@index}}'/>
-						<label for='{{../title}}-{{@index}}-2'
+						value='Needs Improvement'
+						name='{{../unique}}-{{@index}}'/>
+						<label
 						class="material-icons">
 						sentiment_neutral
 						</label>
 					</td>
 					<td class="rating-table-vote">
 						<input type='radio'
-						id='{{../title}}-{{@index}}-3'
-						value='1'
-						name='{{../title}}-{{@index}}'/>
-						<label for='{{../title}}-{{@index}}-3'
+						value='Poor'
+						name='{{../unique}}-{{@index}}'/>
+						<label
 						class="material-icons">
 						sentiment_very_dissatisfied
 						</label>
 					</td>
 					<td class="rating-table-vote">
 						<input type='radio'
-						id='{{../title}}-{{@index}}-4'
-						value='0'
-						name='{{../title}}-{{@index}}'/>
-						<label for='{{../title}}-{{@index}}-4'
+						value='Not Sure'
+						name='{{../unique}}-{{@index}}'/>
+						<label
 						class="material-icons">
 						help_outline
 						</label>
@@ -110,11 +107,80 @@
 			</tbody>
 		</table>
 	</script>
-	<script type="text/x-handlebars-template" id="question-multi-column-list"></script>
-	<script type="text/x-handlebars-template" id="question-large-textbox"></script>
-	<script type="text/x-handlebars-template" id="question-yes-no"></script>
-	<script type="text/x-handlebars-template" id="question-multi-from-list"></script>
-
+	<script type="text/x-handlebars-template" id="question-multi-column-list">
+		<p>{{question}}</p>
+		<table class="multi-column-list">
+			<thead>
+				<tr>
+				{{#each columns}}
+					<th>{{this}}</th>
+				{{/each}}
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				{{#each columns}}
+					<td>
+						<ul></ul>
+					</td>
+				{{/each}}
+				</tr>
+				<tr>
+				{{#each columns}}
+					<td>
+						<input type="text" class="multi-column-list-input"/>
+					</td>
+				{{/each}}
+				</tr>
+			</tbody>
+		</table>
+	</script>
+	<script type="text/x-handlebars-template" id="question-large-textbox">
+		<p>{{question}}</p>
+		<textarea rows="5"
+		class="large-textbox"
+		placeholder="Type your response here..."></textarea>
+	</script>
+	<script type="text/x-handlebars-template" id="question-yes-no">
+		<p>{{question}}</p>
+		<input type="radio"
+		class="yes-no-radio"
+		name="{{unique}}"
+		id="{{unique}}-1"
+		value="1">
+		<label for="{{unique}}-1">{{yes-label}}</label>
+		<input type="radio"
+		class="yes-no-radio"
+		name="{{unique}}"
+		id="{{unique}}-0"
+		value="0">
+		<label for="{{unique}}-0">{{no-label}}</label>
+	</script>
+	<script type="text/x-handlebars-template" id="question-multi-from-list">
+		<p>{{question}}</p>
+		{{#times count}}
+		<div class='multi-from-list-wrapper'>
+			<select data-no-repeats="{{../noRepeats}}"
+			class='multi-from-list-select'>
+				<option selected disabled>Choose an item</option>
+			{{#each ../options}}
+				<option>{{this}}</option>
+			{{/each}}
+			</select>
+		</div>
+		{{/times}}
+	</script>
+	<script type="text/x-handlebars-template" id="question-radio-list">
+	   	<p>{{question}}</p>
+	   	{{#each options}}
+	   	<input type="radio"
+	   	class="radio-list-radio"
+	   	name="{{../unique}}"
+	   	id="{{../unique}}-{{value}}"
+	   	value="{{value}}"/>
+	   	<label for="{{../unique}}-{{value}}">{{label}}</label>
+	   	{{/each}}
+	</script>
 	<div id="landing">
 		<div id="landing-title">
 			<span>Student-Teacher Feedback</span>

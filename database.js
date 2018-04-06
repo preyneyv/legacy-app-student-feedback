@@ -15,10 +15,6 @@ const studentSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	voted: {
-		type: Boolean,
-		default: false
-	},
 	subjects: [ Schema.Types.ObjectId ]
 })
 
@@ -36,7 +32,7 @@ const teacherSchema = new Schema({
 const submissionSchema = new Schema({
 	subjectId: Schema.Types.ObjectId,
 	studentId: Schema.Types.ObjectId,
-	form: Schema.Types.Mixed
+	submissions: Schema.Types.Mixed
 })
 
 module.exports = {

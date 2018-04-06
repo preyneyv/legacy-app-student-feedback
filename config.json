@@ -1,3 +1,26 @@
 {
-	"dbUri": "mongodb://127.0.0.1/student_feedback"
+    "dbUri": "mongodb://127.0.0.1/student_feedback",
+    "format": [
+        {
+            "title": "Rate Your Teacher",
+            "questions": [
+                {
+                    "id": "learning-environment",
+                    "required": true,
+                    "type": "rating-table",
+                    "data": {
+                        "title": "Learning Environment",
+                        "rows": [
+                            "My teacher is friendly and approachable.",
+                            "The teacher ensures that all students in our class are given an opportunity to participate and share their thoughts regularly.",
+                            "My teacher is enthusiastic about his/her subject.",
+                            "My teacher uses an appropriate tone of voice.",
+                            "My teacher maintains a professional attitude.",
+                            "The teacher is a good role model."
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
 }
