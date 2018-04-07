@@ -19,8 +19,221 @@
                             "The teacher is a good role model."
                         ]
                     }
+                },
+                {
+                    "id": "teaching",
+                    "required": true,
+                    "type": "rating-table",
+                    "data": {
+                        "title": "Teaching",
+                        "rows": [
+                            "My teacher gives me a helpful introduction to the lesson for the day.",
+                            "My teacher is prepared for the class.",
+                            "My teacher is knowledgeable about the subject.",
+                            "My teacher shares information about current events, new discoveries or innovations related to the subject.",
+                            "My teacher always gives me work that is not too easy, not too challenging, but just right.",
+                            "My teacher makes connections to real life with the topics and subject, and therefore I understand the importance of why I am learning what is being taught.",
+                            "I am encouraged to present what I have learned in different ways, such as a role play, a poem, a presentation, a poster, project work, activity, etc.",
+                            "My teacher plans lessons that I find interesting and enjoyable.",
+                            "Homework is sent regulary, and I am able to complete most of them independently.",
+                            "The homework given helps me to learn and apply the concepts better.",
+                            "Students always submit their work on-time.",
+                            "My teacher has helped me improve and learn more in the subject this year."
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Rate Your Teacher",
+            "questions": [
+                {
+                    "type": "rating-table",
+                    "id": "assessements-feedback",
+                    "required": true,
+                    "data": {
+                        "title": "Assessments & Feedback",
+                        "rows": [
+                            "My books are always checked by my teacher and he/she provides me with timely and helpful feedback.",
+                            "My teacher explains what, and how, I should prepare for any upcoming assessments.",
+                            "Assessments are reviewed, in a timely manner, and the teachers gives me good feedback to help me understand my strengths and how I can improve.",
+                            "If I haven’t understood a concept, my teacher re-teaches the concept to me.",
+                            "My teacher and I have set subject specific goals for myself."
+                        ]
+                    }
+                },
+                {
+                    "type": "rating-table",
+                    "id": "reflection",
+                    "required": true,
+                    "data": {
+                        "title": "Reflecting On Myself",
+                        "rows": [
+                            "I always submit my work on-time.",
+                            "I participate in class often.",
+                            "I follow the school and class rules at all times.",
+                            "I try my best at all times."
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Answer These Questions",
+            "questions": [
+                {
+                    "id": "attributes-skills-values",
+                    "required": true,
+                    "type": "multi-column-list",
+                    "data": {
+                        "question": "List attributes, skills and values that you have developed in this class.",
+                        "columns": ["Skills", "Attributes", "Values"]
+                    }
+                },
+                {
+                    "id": "most-interesting-thing",
+                    "required": true,
+                    "type": "large-textbox",
+                    "data": {
+                        "question": "Share the most interesting thing that you have learned in this class and explain how you think that this information can be used in your life outside of school."
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Answer These Questions",
+            "questions": [
+                {
+                    "id": "appropriate-consequences",
+                    "required": true,
+                    "type": "yes-no",
+                    "data": {
+                        "question": "There are appropriate consequences for students who misbehave or don’t submit work on time.",
+                        "yes-label": "Agree",
+                        "no-label": "Disagree"
+                    }
+                },
+                {
+                    "id": "additional-comments",
+                    "required": true,
+                    "type": "large-textbox",
+                    "data": {
+                        "question": "Please provide any additional comments that you would like to share about the subject, teacher or class."
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Answer These Questions",
+            "questions": [
+                {
+                    "id": "how-you-feel",
+                    "required": true,
+                    "type": "multi-from-list",
+                    "data": {
+                        "question": "Select 3 adjectives from the list below of how you feel during this class, with the first one being the strongest.",
+                        "noRepeats": true,
+                        "options": [
+                            "Interested",
+                            "Confused",
+                            "Excited",
+                            "Happy",
+                            "Bored",
+                            "Indifferent",
+                            "Challenged",
+                            "Hopeful",
+                            "Frustrated",
+                            "Uninterested",
+                            "Motivated",
+                            "Predictable",
+                            "Shy",
+                            "Reflective",
+                            "Active",
+                            "Tired",
+                            "Risk-taker",
+                            "Confident",
+                            "Lazy",
+                            "Calm",
+                            "Coopertive",
+                            "Embarrased",
+                            "Scared",
+                            "Disciplined",
+                            "Respected"
+                        ],
+                        "count": 3
+                    }
+                },
+                {
+                    "id": "overall-classroom-environment",
+                    "required": true,
+                    "type": "multi-from-list",
+                    "data": {
+                        "question": "Select 3 adjectives to describe your overall classroom environment, with the first one being the most frequent.",
+                        "noRepeats": true,
+                        "options": [
+                            "Orderly",
+                            "Clarity",
+                            "Quiet",
+                            "Open",
+                            "Interesting",
+                            "Predictable",
+                            "Uneventful",
+                            "Lecturing",
+                            "Fun",
+                            "Disengaged",
+                            "Creative",
+                            "Discovering",
+                            "Enquiring",
+                            "Chaotic",
+                            "Engaging",
+                            "Unique",
+                            "Empowering",
+                            "Reflective",
+                            "Expectations",
+                            "Civility",
+                            "Difficult",
+                            "Collaboration",
+                            "Disciplined",
+                            "Resourceful",
+                            "Boring",
+                            "Coopertive",
+                            "Stressful",
+                            "Interactive",
+                            "Unpredictable"
+                        ],
+                        "count": 3
+                    }
+                },
+                {
+                    "id": "academic-performance",
+                    "required": true,
+                    "type": "radio-list",
+                    "data": {
+                        "question": "How would you rate your academic performance in this class?",
+                        "options": [
+                            {
+                                "label": "Near the top.",
+                                "value": "Near the top."
+                            },
+                            {
+                                "label": "Above average.",
+                                "value": "Above average."
+                            },
+                            {
+                                "label": "Average.",
+                                "value": "Average."
+                            }
+                        ]
+                    }
                 }
             ]
         }
-    ]
+    ],
+    "ratingTableMap": {
+        "Excellent": 4,
+        "Good": 3,
+        "Needs Improvement": 2,
+        "Poor": 1,
+        "Not Sure": 0
+    }
 }

@@ -32,7 +32,7 @@ const teacherSchema = new Schema({
 const submissionSchema = new Schema({
 	subjectId: Schema.Types.ObjectId,
 	studentId: Schema.Types.ObjectId,
-	submissions: Schema.Types.Mixed
+	submissions: Object
 })
 
 module.exports = {

@@ -1,0 +1,138 @@
+:root {
+	--serif: 'Playfair Display', serif;
+	--sans-serif: 'Lato', sans-serif;
+	--highlight: #1273A8;
+	--highilght-secondary: #d80;
+	--bg-gradient: linear-gradient(to right, #083170, #1cb5e0);
+}
+
+body {
+	background: var(--highlight);
+	background: var(--bg-gradient);
+	background-attachment: fixed;
+	font-family: var(--sans-serif);
+	display: flex;
+	margin: 0;
+	font-size: 20px;
+	align-items: flex-start;
+}
+
+.spacer {flex: 1 1 auto;}
+
+#content {
+	flex: 1 1 auto;
+	position: relative;
+	box-sizing: border-box;
+	margin: 16px;
+	padding: 16px;
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+	background: white;
+}
+
+h1, h2 {
+	font-family: var(--serif);
+	font-weight: normal;
+	margin: 0;
+	margin-bottom: 8px;
+}
+
+a {
+	text-decoration: none;
+	color: var(--highlight);
+	border-bottom: 1px dotted var(--highlight);
+}
+p.warn {
+	color: var(--highilght-secondary);
+}
+
+.dataTable {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid black;
+	margin-top: 16px;
+}
+.dataTable thead tr {border-bottom: 1px solid black;}
+.dataTable tfoot tr {border-top: 1px solid black;}
+
+.dataTable td,
+.dataTable th {
+	border-right: 1px dotted rgba(0,0,0,0.15);
+	box-sizing: border-box;
+	padding: 8px;
+}
+.dataTable th {
+	font-family: var(--serif)
+}
+.dataTable th:not(.nosort) {
+	cursor: pointer;
+	position: relative;
+	padding: 8px 24px;
+}
+.dataTable th:not(.nosort):after {
+	content: "";
+	position: absolute;
+	right: 8px;
+	top: 14px;
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 16px;
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: 'liga';
+	color: rgba(0,0,0,0.3);
+}
+.dataTable th.sorting_asc:after {content: 'expand_less';}
+.dataTable th.sorting_desc:after {content: 'expand_more';}
+.dataTable .sorting_disabled {pointer-events: none;}
+.dataTable .odd {
+	background: rgba(0,0,0,0.05);
+}
+.dataTable tbody tr:hover {
+	background: rgba(255,136,0, 0.2);
+}
+.dataTables_info,
+.dataTables_length {
+	float: left;
+}
+.dataTables_info {margin-top: 8px;}
+.dataTables_length {margin-bottom: 8px;}
+
+.dataTables_paginate,
+.dataTables_filter {
+	float: right;
+}
+.dataTables_filter input {margin-left: 8px;}
+.dataTables_paginate {margin-top: 8px;}
+.dataTables_filter {margin-bottom: 8px;}
+.dataTable .actions {
+	text-align: center;
+}
+.paginate_button {
+	text-transform: uppercase;
+	color: var(--highlight);
+	outline: none;
+	cursor: pointer;
+	font-weight: 700;
+	margin-left: 8px;
+	display: inline-block;
+	padding: 4px 8px;
+}
+.paginate_button.current,
+.paginate_button:active {
+	background: var(--highlight);
+	color: white;
+}
+.paginate_button.current {pointer-events: none;}
+.paginate_button.disabled {
+	color: rgba(0,0,0,0.2);
+	pointer-events: none;
+}

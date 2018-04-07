@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload - Student Feedback</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,700|Playfair+Display|Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="../theme.css">
+	<link rel="stylesheet" type="text/css" href="../sidebar.css">
+
+	<script defer src="index.js"></script>
+</head>
+<body>
+	<div id="sidebar">
+		<div id="app-title">Student<br>Feedback</div>
+		<a href="../">Home</a>
+		<a class="current" href="./">Upload</a>
+		<div class="spacer"></div>
+		<a href="../../">Back</a>
+	</div>
+	<div id="content">
+		<h1 id="page-title">Upload</h1>
+		<p>
+			Download <a href="../formats.zip" download>these formats</a>
+			and fill them out in a program like Excel.
+		</p>
+		<p>Ensure that you save them as "Comma-separated values (.csv)".</p>
+		<p>Then, select them here to import them into the database.</p>
+		<p class="warn">
+			<b>WARNING:</b> This action will delete
+			everything currently in the database!
+		</p>
+		<form id="import-files" enctype="multipart/form-data">
+			<label for="subjects-file">Subjects: </label>
+			<input id="subjects-file"
+			type="file" name="subjects"/>
+			<br>
+			<label for="students-file">Students: </label>
+			<input id="students-file"
+			type="file" name="students"/>
+			<br>
+			<label for="teachers-file">Teachers: </label>
+			<input id="teachers-file"
+			type="file" name="teachers"/>
+			<br>
+			<input type="submit" value="Import">
+		</form>
+	</div>
+</body>
+</html>

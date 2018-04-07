@@ -19,14 +19,14 @@ exports.fetch = async (req, res) => {
 }
 
 exports.submit = async (req, res) => {
-	let { subjectId, pin, submissions } = req.post
+	let { subjectId, pin, selections } = req.post
 	let studentId = (await Student.findOne({ pin }))._id
-	let pastSubmission = Submission.findOne({ subjectId, studentId })
+	let pastSubmission = await Submission.findOne({ subjectId, studentId })
 	if (pastSubmission) return res.status(400).send({success: false, message: 'already_submitted'});
 	let submission = new Submission({
 		subjectId,
 		studentId,
-		submissions
+		submissions: selections
 	})
 	await submission.save()
 	res.send({success: true})

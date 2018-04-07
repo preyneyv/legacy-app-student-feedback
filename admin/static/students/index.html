@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Students - Student Feedback</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+	
+	<link href="https://fonts.googleapis.com/css?family=Lato:300|Playfair+Display|Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="../theme.css">
+	<link rel="stylesheet" type="text/css" href="../sidebar.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
+
+	<script src="index.js" defer></script>
+</head>
+<body>
+	<div id="sidebar">
+		<div id="app-title">Student<br>Feedback</div>
+		<a href="../">Home</a>
+		<a class="current" href="./">Students</a>
+		<a href="../upload">Upload</a>
+		<div class="spacer"></div>
+		<a href="../">Back</a>
+	</div>
+	<div id="content">
+		<h1 id="page-title">Students</h1>
+		<table id="students-table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Grade</th>
+					<th>Section</th>
+					<th>Pin</th>
+					<th>Used</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</body>
+</html>

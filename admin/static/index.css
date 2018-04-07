@@ -1,0 +1,20 @@
+/*Subjects data table styles*/
+.dataTable .average-rating {
+	text-align: center;
+}
+.dataTable .view-stats {
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 8px;
+	background: var(--highlight);
+	background: var(--bg-gradient);
+	background-attachment: fixed;
+	font-size: inherit;
+	border: 0;
+	width: 100%;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}

@@ -1,0 +1,12 @@
+.dataTable .actions {
+	text-align: center;
+	width: 10px;
+}
+.pin-reset {
+	color: var(--highlight);
+	cursor: pointer;
+}
+.pin-reset.disabled {
+	opacity: 0.2;
+	pointer-events: none;
+}
