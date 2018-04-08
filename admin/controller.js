@@ -50,7 +50,7 @@ exports.upload = async (req, res) => {
 	})
 	let usedPins = []
 	let sPromises = students.data.map(s => {
-		s.subjects = Papa.parse(s.subjects).data[0].map(id => subjectIdMap[id]._id)
+		s.subjects = s.subjects.split(/\W?,\W?/g).map(id => subjectIdMap[id]._id)
 		let pin = ("0000" + Math.floor(Math.random() * 10000)).substr(-4, 4)
 		while (usedPins.indexOf(pin) != -1) {
 			// get a new pin.
@@ -101,7 +101,7 @@ exports.listSubjects = async (req, res) => {
 		return subject
 	})
 	subjects = await Promise.all(subjects)
-	res.send({success: true, subjects})
+	res.send({success: true, subjects, questions: questionsById})
 }
 
 exports.listStudents = async (req, res) => {
@@ -114,4 +114,11 @@ exports.listStudents = async (req, res) => {
 exports.resetPin = async (req, res) => {
 	await Student.update({_id: req.post.id}, {used: false})
 	res.send({success: true})
+}
+
+exports.getStats = async (req, res) => {
+	let { subjectId } = req.params
+	console.log(subjectId)
+	let submissions = await Submission.find({ subjectId })
+	res.send({success: true, submissions})
 }

@@ -18,3 +18,142 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
+.dataTable .view-stats:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+
+body.modal-show #content,
+body.modal-show #sidebar {
+	filter: blur(2px);
+}
+
+/*Popup styles*/
+#modal {
+	background: rgba(0,0,0,0.5);
+	position: fixed;
+	z-index: 1;
+	width: 100vw;
+	height: 100vh;
+	overflow: auto;
+	opacity: 0;
+	pointer-events: none;
+}
+#modal-close {
+	position: fixed;
+	top: 4px;
+	right: 4px;
+	cursor: pointer;
+	color: white;
+}
+#modal-content {
+	width: calc(100vw - 64px);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	box-sizing: border-box;
+	margin-top: 32px;
+}
+body.modal-show #modal {opacity: 1; pointer-events: all;}
+#modal-content > .question {
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+	background: white;
+	padding:8px;
+	transition: opacity 300ms;
+	margin-bottom: 32px;
+}
+.question > h3 {
+	margin: 0;
+	cursor: pointer;
+	padding: 8px;
+}
+.question > .content {
+	margin: 8px;
+	border: 1px solid rgba(0,0,0,0.15);
+}
+#modal-content .content > h3 {
+	font-family: var(--sans-serif);
+	margin: 0;
+	margin-bottom: 16px;
+}
+.question > .content > div > h3 {
+	margin: 0;
+	margin-bottom: 4px;
+}
+.question.rating-table > .content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.question.rating-table > .content > div {
+	flex: 1 0 33%;
+	min-width: 350px;
+	box-sizing: border-box;
+	border: 1px solid rgba(0,0,0,0.15);
+	display: flex;
+	flex-direction: column;
+	/*margin-bottom: 16px;*/
+	padding: 8px;
+	/*height: 420px;*/
+}
+.spacer {
+	flex: 1 1 auto;
+}
+.question.rating-table > .content > div > .chart-cont {
+	flex: 0 0 auto;
+	height: 300px;
+	overflow: hidden;
+}
+.question.yes-no > .content > div {
+	height: 350px;
+}
+.wordcloud {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.responses-list {
+	overflow: auto;
+	max-height: 300px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	border: 1px solid rgba(0,0,0,0.15);
+}
+.responses-list li {
+	display: block;
+	padding: 8px;
+	border-bottom: 1px dashed rgba(0,0,0,0.15);
+}
+.responses-list li:last-child { border: none; }
+
+.multi-column-list .content > div {
+	border: 1px solid rgba(0,0,0,0.15);
+	box-sizing: border-box;
+	padding: 8px;
+}
+.radio-list-ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.radio-list-ul li {
+	position: relative;
+	margin: 8px;
+	padding: 8px;
+	background: rgba(0,0,0,0.05);
+}
+.radio-list-ul li > span {
+	position: relative;
+	z-index: 1;
+}
+.radio-list-ul li > div {
+	background: var(--highlight-secondary);
+	position: absolute;
+	top: 0;
+	opacity: 0.5;
+	left: 0;
+	z-index: 0;
+	height: 100%;
+}

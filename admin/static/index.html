@@ -5,7 +5,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+	<script src="palette.js"></script>
+	<script src="wcloud.js"></script>
+	<link rel="stylesheet" type="text/css" href="wcloud.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Lato:300|Playfair+Display|Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="theme.css">
@@ -17,13 +22,14 @@
 <body>
 	<div id="sidebar">
 		<div id="app-title">Student<br>Feedback</div>
-		<a class="current" href="./">Home</a>
+		<a class="current" href="./">Subjects</a>
+		<a href="students">Students</a>
 		<a href="upload">Upload</a>
 		<div class="spacer"></div>
 		<a href="../">Back</a>
 	</div>
 	<div id="content">
-		<h1 id="page-title">Home</h1>
+		<h1 id="page-title">Subjects</h1>
 		<table id="subjects-table">
 			<thead>
 				<tr>
@@ -35,6 +41,11 @@
 				</tr>
 			</thead>
 		</table>
+	</div>
+	<div id="modal">
+		<i id="modal-close" class="material-icons">close</i>
+		<div id="modal-content">
+		</div>
 	</div>
 </body>
 </html>
