@@ -88,7 +88,7 @@ exports.listSubjects = async (req, res) => {
 				// skip all rating table stuff
 				if (questionsById[id].type != 'rating-table') continue;
 				let response = entry.submissions[id]
-				return response.reduce((sum, rating) => {
+				return sum + response.reduce((sum, rating) => {
 					rating = config.ratingTableMap[rating]
 					count++
 					return sum + rating
@@ -120,5 +120,29 @@ exports.getStats = async (req, res) => {
 	let { subjectId } = req.params
 	console.log(subjectId)
 	let submissions = await Submission.find({ subjectId })
+	res.send({success: true, submissions})
+}
+
+exports.students = async (req, res) => {
+	let { subjectId } = req.params
+	let submissions = (await Submission.find({subjectId})).map(s => s.toJSON())
+	for (let submission of submissions) {
+		submission.student = await Student.findById(submission.studentId)
+		let sum = 0, count = 0
+		for (let id of Object.keys(submission.submissions)) {
+			// skip all rating table stuff
+			if (questionsById[id].type != 'rating-table') continue;
+			let response = submission.submissions[id]
+			sum += response.reduce((s, rating) => {
+				rating = config.ratingTableMap[rating]
+				count++
+				return s + rating
+			}, 0)
+		}
+		let average = sum / count
+		if (isNaN(average)) average = null;
+		else average = average.toFixed(2);
+		submission.average = average
+	}
 	res.send({success: true, submissions})
 }

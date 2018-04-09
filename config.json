@@ -2,7 +2,7 @@
     "dbUri": "mongodb://127.0.0.1/student_feedback",
     "format": [
         {
-            "title": "Rate Your Teacher",
+            "title": "Answer These Questions",
             "questions": [
                 {
                     "id": "learning-environment",
@@ -45,7 +45,7 @@
             ]
         },
         {
-            "title": "Rate Your Teacher",
+            "title": "Answer These Questions",
             "questions": [
                 {
                     "type": "rating-table",

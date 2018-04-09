@@ -287,8 +287,11 @@ function submitGroup() {
 	var index = $group.data('index')
 	var selections = {}
 	$group.find('.question').each(function() {
+		console.log('Looping')
 		let type = $(this).data('type')
+		console.log(type)
 		let value = questionProcessors[type]($(this))
+		console.log(value)
 		let id = $(this).data('id')
 		selections[id] = value
 	})
@@ -302,4 +305,5 @@ function submitGroup() {
 
 function groupsDone() {
 	$("body").empty()
+	alert('Thank you for participating! Your submissions have been saved.')
 }

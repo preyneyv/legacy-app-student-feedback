@@ -9,6 +9,7 @@ module.exports = app => {
 	app.get('/api/subjects/', controller.listSubjects)
 	app.get('/api/students/', controller.listStudents)
 	app.get('/api/subjects/:subjectId/', controller.getStats)
+	app.get('/api/subjects/:subjectId/students', controller.students)
 
 	app.post('/api/students/reset', controller.resetPin)
 	app.post('/api/upload/', controller.upload)

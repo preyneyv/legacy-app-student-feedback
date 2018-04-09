@@ -2,12 +2,15 @@
 .dataTable .average-rating {
 	text-align: center;
 }
-.dataTable .view-stats {
+.dataTable .buttons-col {
+	width: 120px;
+}
+.dataTable button,
+.dataTable button {
 	-webkit-appearance: none;
 	appearance: none;
 	padding: 8px;
 	background: var(--highlight);
-	background: var(--bg-gradient);
 	background-attachment: fixed;
 	font-size: inherit;
 	border: 0;
@@ -18,13 +21,16 @@
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
-.dataTable .view-stats:disabled {
+.dataTable button:disabled,
+.dataTable button:disabled {
 	cursor: not-allowed;
 	opacity: 0.4;
 }
 
 body.modal-show #content,
-body.modal-show #sidebar {
+body.details-modal-show #content,
+body.modal-show #sidebar,
+body.details-modal-show #sidebar {
 	filter: blur(2px);
 }
 
@@ -156,4 +162,76 @@ body.modal-show #modal {opacity: 1; pointer-events: all;}
 	left: 0;
 	z-index: 0;
 	height: 100%;
+}
+
+/*Details modal styles*/
+#details-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.7);
+	transition: opacity 300ms;
+}
+body:not(.details-modal-show) #details-modal {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#details-modal-content,
+#details-modal-details-content {
+	padding: 16px;
+	width: 740px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	background: white;
+	max-width: calc(100vw - 32px);
+	overflow: auto;
+	box-shadow: 0px 3px 6px rgba(0,0,0,0.15);
+	box-sizing: border-box;
+}
+#details-modal-details-content {
+	width: 900px;
+	max-height: calc(100vh - 32px);
+	overflow: auto;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms;
+}
+#details-modal-details-content.show {
+	opacity: 1;
+	pointer-events: all;
+}
+#details-modal-details-content .question {
+	margin-top: 8px;
+	border: 1px dotted rgba(0,0,0,0.15);
+	padding: 8px;
+}
+#details-modal-details-content .question p {
+	margin-top: 0px;
+}
+#details-modal-details-content table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#details-modal-details-content table td,
+#details-modal-details-content table th {
+	border: 1px solid rgba(0,0,0,0.15);
+	padding: 8px;
+}
+#details-modal-details-content table th {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-bottom: 3px double rgba(0,0,0,0.15);
+}
+#details-modal-close {
+	position: fixed;
+	top: 8px;
+	right: 8px;
+	padding: 8px;
+	cursor: pointer;
+	color: white;
 }

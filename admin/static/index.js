@@ -1,4 +1,5 @@
 let subjects, questionsById
+let detailsTable
 const table = $("#subjects-table").DataTable({
 	autoWidth: false,
 	// paginate: false,
@@ -26,16 +27,24 @@ const table = $("#subjects-table").DataTable({
 				`
 			}
 		},
+		{ // action buttons
+			render: function (data, type, row) {
+				let disabledFlag = row.average ? "" : "disabled"
+				return `
+					<button ${disabledFlag} class='view-details' data-id='${row._id}'>View</button>
+				`
+			}
+		},
 	],
 	columnDefs: [
 		{
-			targets: -1,
+			targets: [-1, -2],
 			sortable: false,
 			searchable: false,
-			className: 'stats-col'
+			className: 'buttons-col'
 		},
 		{
-			targets: -2,
+			targets: -3,
 			className: 'average-rating'
 		},
 	],
@@ -75,8 +84,124 @@ const table = $("#subjects-table").DataTable({
 				}
 			})
 		})
+		$('#subjects-table .view-details').on('click', function() {
+			let subjectId = $(this).data('id')
+			$('body').addClass('details-modal-show')
+			if (detailsTable) detailsTable.destroy();
+			axios.get(`api/subjects/${subjectId}/students`)
+			.then(response => response.data)
+			.then(data => data.submissions)
+			.then(submissions => {
+				detailsTable = $("#details-table").DataTable({
+					autoWidth: false,
+					data: submissions,
+					columns: [
+						{data: 'student.name'},
+						{data: 'student.grade'},
+						{data: 'student.section'},
+						{data: 'average'},
+						{
+							data: 'average',
+							render: function (data, type, row) {
+								return `
+									<button class='view-student-details' data-id='${row._id}'>View</button>
+								`
+							}
+						},
+					],
+					columnDefs: {
+						targets: -1,
+						sortable: false,
+						searchable: false,
+						className: 'buttons-col'
+					},
+					drawCallback: function() {
+						$('#details-table .view-student-details').on('click', function() {
+							$('#details-modal-responses').empty()
+							let id = $(this).data('id')
+							let submission = detailsTable.data()
+								.toArray().find(s => s._id == id)
+							for (let submissionId of Object.keys(submission.submissions)) {
+								let question = questionsById[submissionId]
+								let div = $("<div>").addClass('question')
+								if (question.data.title)
+									div.append($('<h2>').text(question.data.title))
+								else
+									div.append($('<p>').text(question.data.question))
+
+								div.append(detailsRendererElems[question.type](question, submission.submissions[submissionId]))
+
+								div.appendTo('#details-modal-responses')
+							}
+
+							$('#details-modal-details-content').addClass('show').scrollTop(0)
+						})
+					}
+				})
+			})
+		})
 	}
 })
+let detailsRendererElems = {
+	'rating-table': function(question, data) {
+		let table = $("<table>")
+		.append(
+			$('<tr>')
+			.append(
+				$('<th>')
+				.text('Question')
+			)
+			.append(
+				$('<th>')
+				.text('Response')
+			)
+		)
+		question.data.rows.forEach((row, i) => {
+			table.append(
+				$('<tr>')
+				.append(
+					$('<td>')
+					.text(row)
+				)
+				.append(
+					$('<td>')
+					.text(data[i])
+				)
+			)
+		})
+
+		return table
+	},
+	'multi-column-list': function(question, data) {
+		let titlerow = $("<tr>")
+		question.data.columns.forEach(col => {
+			titlerow.append($("<th>").text(col))
+		})
+		let table = $('<table>')
+		.append(titlerow)
+		let row = $('<tr>')
+		Object.values(data)
+		.forEach(words => {
+			row.append($('<td>').text(words.join('<br/>')))
+		})
+		table.append(row)
+		return table
+	},
+	'large-textbox': function(question, data) {
+		return $('<div>').text(data)
+	},
+	'yes-no': function(question, data) {
+		return $('<div>').text(data ? 'Yes.' : 'No.')
+	},
+	'multi-from-list': function(question, data) {
+		return $('<div>').text(data.join(', '))
+	},
+	'radio-list': function(question, data) {
+		return $('<div>').text(data)
+	},
+}
+
+
 const ratingTableColors = {
 	"Needs Improvement": "#a6cee3",
 	Poor: "#1f78b4",
@@ -210,4 +335,11 @@ let questionStatsElements = {
 $("#modal-close").on('click', function() {
 	$('#modal-content').empty()
 	$('body').removeClass('modal-show')
+})
+
+$("#details-modal-close").on('click', function() {
+	if ($("#details-modal-details-content").is('.show'))
+		$("#details-modal-details-content").removeClass('show')
+	else 
+		$("body").removeClass('details-modal-show')
 })
