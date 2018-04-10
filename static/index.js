@@ -114,12 +114,12 @@ $("#pin-input").on('keypress', function (e) {
 	}
 });
 function submitPin(pin) {
-	axios.post('/api/fetch', { pin })
+	axios.post('api/fetch', { pin })
 	.then(response => response.data)
 	.then(data => {
 		if (data.success) {
 			let { subjects } = data
-			return axios.get('/api/questions')
+			return axios.get('api/questions')
 			.then(response => response.data)
 			.then(questions => createViews(questions, subjects))
 		} else {
@@ -295,7 +295,7 @@ function submitGroup() {
 		let id = $(this).data('id')
 		selections[id] = value
 	})
-	axios.post('/api/submit', {
+	axios.post('api/submit', {
 		subjectId: $group.data('subject-id'),
 		selections,
 		pin
